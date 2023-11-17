@@ -1,0 +1,21 @@
+fun main() {
+    val stack = mutableListOf<Int>()
+
+    // Push elements onto the stack
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+
+    println("Stack: $stack")
+
+    // Pop elements from the stack
+    val poppedElement = stack.pop()
+    println("Popped element: $poppedElement")
+    
+    println("Stack after pop: $stack")
+}
+
+// Extension functions for push and pop
+fun <T> MutableList<T>.push(item: T) = add(item)
+fun <T> MutableList<T>.pop(): T? = if (isNotEmpty()) removeAt(size - 1)
+else null
