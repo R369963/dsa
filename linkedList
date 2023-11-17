@@ -1,0 +1,88 @@
+class Node<T>(val data: T, var next: Node<T>? = null)
+
+class LinkedList<T> {
+    private var head: Node<T>? = null
+
+    fun add(data: T) {
+        val newNode = Node(data)
+        if (head == null) {
+            head = newNode
+        } else {
+            var current = head
+            while (current?.next != null) {
+                current = current.next
+            }
+            current?.next = newNode
+        }
+    }
+
+    fun remove(data: T) {
+        if (head != null && head?.data == data) {
+            head = head?.next
+            return
+        }
+
+        var current = head
+        var prev: Node<T>? = null
+
+        while (current != null && current.data != data) {
+            prev = current
+            current = current.next
+        }
+
+        prev?.next = current?.next
+    }
+
+    fun display() {
+        var current = head
+        while (current != null) {
+            print("${current.data} -> ")
+            current = current.next
+        }
+        println("null")
+    }
+
+    fun contains(data: T): Boolean {
+        var current = head
+        while (current != null) {
+            if (current.data == data) {
+                return true
+            }
+            current = current.next
+        }
+        return false
+    }
+
+    fun size(): Int {
+        var count = 0
+        var current = head
+        while (current != null) {
+            count++
+            current = current.next
+        }
+        return count
+    }
+}
+
+fun main() {
+    val linkedList = LinkedList<Int>()
+
+    // Add elements to the linked list
+    linkedList.add(1)
+    linkedList.add(2)
+    linkedList.add(3)
+
+    // Display the linked list
+    linkedList.display()
+
+    // Remove an element
+    linkedList.remove(2)
+    println("Linked List after removing 2:")
+    linkedList.display()
+
+    // Check if an element is present
+    println("Does the linked list contain 3? ${linkedList.contains(3)}")
+
+    // Get the size of the linked list
+    println("Size of the linked list: ${linkedList.size()}")
+}
