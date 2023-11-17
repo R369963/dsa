@@ -1,5 +1,4 @@
-queue 
-class Queue<T> {
+ class Queue<T> {
     private val elements = mutableListOf<T>()
 
     fun enqueue(item: T) {
@@ -56,7 +55,3 @@ fun main() {
 
 // Extension function to convert a Queue to a List for printing
 fun <T> Queue<T>.toList(): List<T> = elements.toList()
-
-
-
-
