@@ -1,0 +1,62 @@
+queue 
+class Queue<T> {
+    private val elements = mutableListOf<T>()
+
+    fun enqueue(item: T) {
+        elements.add(item)
+    }
+
+    fun dequeue(): T? {
+        return if (isEmpty()) {
+            null
+        } else {
+            elements.removeAt(0)
+        }
+    }
+
+    fun peek(): T? {
+        return elements.firstOrNull()
+    }
+
+    fun isEmpty(): Boolean {
+        return elements.isEmpty()
+    }
+
+    fun size(): Int {
+        return elements.size
+    }
+}
+
+fun main() {
+    val queue = Queue<Int>()
+
+    // Enqueue elements into the queue
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(3)
+
+    // Print initial queue
+    println("Initial Queue: ${queue.toList()}")
+
+    // Dequeue an element from the queue
+    val dequeuedElement = queue.dequeue()
+    println("Dequeued element: $dequeuedElement")
+
+    // Peek at the front element of the queue
+    val frontElement = queue.peek()
+    println("Front element: $frontElement")
+
+    // Print queue size and check if it's empty
+    println("Queue size: ${queue.size()}")
+    println("Is the queue empty? ${queue.isEmpty()}")
+
+    // Print the queue after dequeue operation
+    println("Queue after dequeue: ${queue.toList()}")
+}
+
+// Extension function to convert a Queue to a List for printing
+fun <T> Queue<T>.toList(): List<T> = elements.toList()
+
+
+
+
